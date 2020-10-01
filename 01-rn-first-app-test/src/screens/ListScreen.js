@@ -5,19 +5,21 @@ const ListScreen = () => {
   const friends = [
     //{ name: 'Friend #1', key: '1' },
     //if you define key object like that, directly on the object, you do not need to do anything when you rendering FlatList
-    { name: 'Friend #1' },
+    { name: 'Friend #1', age: 99 },
     { name: 'Friend #2' },
-    { name: 'Friend #3' },
-    { name: 'Friend #4' },
-    { name: 'Friend #5' },
-    { name: 'Friend #6' },
-    { name: 'Friend #7' },
-    { name: 'Friend #8' },
-    { name: 'Friend #9' },
-    { name: 'Friend #10' },
+    { name: 'Friend #3', age: 50 },
+    { name: 'Friend #4', age: 20 },
+    { name: 'Friend #5', age: 20 },
+    { name: 'Friend #6', age: 20 },
+    { name: 'Friend #7', age: 20 },
+    { name: 'Friend #8', age: 20 },
+    { name: 'Friend #9', age: 20 },
+    { name: 'Friend #10', age: 20 },
   ];
   return (
     <FlatList
+      //horizontal
+      //showsHorizontalScrollIndicator={false}
       data={friends}
       // renderItem={(element) => {
       //   //element --> {item: { name: 'Friend #1' }, index: 0}
@@ -27,21 +29,19 @@ const ListScreen = () => {
       //friend.name is the key! (we decided here)
       renderItem={({ item }) => {
         //item --> { name: 'Friend #1' }
-        return <Text>{item.name}</Text>;
+        return (
+          <Text style={styles.textStyle}>
+            {item.name} - Age {item.age}
+          </Text>
+        );
       }}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    //flexDirection: 'row',
-    //flex: 1,
-    width: '100%',
-    height: 90,
-    backgroundColor: '#f7287b',
-    alignItems: 'center',
-    justifyContent: 'center',
+  textStyle: {
+    marginVertical: 50,
   },
 });
 
