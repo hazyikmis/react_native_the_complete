@@ -2,7 +2,7 @@
 
 https://www.udemy.com/course/the-complete-react-native-and-redux-course/
 
-This folder contains all apps2 source code
+This folder contains all apps' source code
 
 ```
 npm cache clear -f
