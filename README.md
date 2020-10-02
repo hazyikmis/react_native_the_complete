@@ -27,3 +27,5 @@ $ npm install react-navigation-stack @react-native-community/masked-view
 //to clear the cache
 $ expo r -c
 ```
+
+vector-icons: https://github.com/expo/vector-icons

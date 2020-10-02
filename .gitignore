@@ -8,6 +8,7 @@ npm-debug.*
 *.p8
 *.p12
 *.key
+*keys*
 *.mobileprovision
 *.orig.*
 web-build/
@@ -22,6 +23,7 @@ web-build/
 */*.p8
 */*.p12
 */*.key
+*/*keys*
 */*.mobileprovision
 */*.orig.*
 */web-build/
