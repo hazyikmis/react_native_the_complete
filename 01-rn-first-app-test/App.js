@@ -9,6 +9,7 @@ import ColorScreen from './src/screens/ColorScreen';
 import SquareScreen from './src/screens/SquareScreen';
 import SquareScreenBetter from './src/screens/SquareScreenBetter';
 import SquareScreenBetterComCon from './src/screens/SquareScreenBetterComCon';
+import CounterScreenBetter from './src/screens/CounterScreenBetter';
 
 const navigator = createStackNavigator(
   {
@@ -17,6 +18,7 @@ const navigator = createStackNavigator(
     List: ListScreen,
     Image: ImageScreen,
     Counter: CounterScreen,
+    CounterBetter: CounterScreenBetter,
     Color: ColorScreen,
     Square: SquareScreen,
     SquareBetter: SquareScreenBetter,
