@@ -50,6 +50,14 @@ const HomeScreen = ({ navigation }) => {
         title="Go to Squares Demo (useReducer)(ComCon)"
         onPress={() => navigation.navigate('SquareBetterCC')}
       />
+      <Button
+        title="Go to Text Screen"
+        onPress={() => navigation.navigate('Text')}
+      />
+      <Button
+        title="Go to Box Screen Demo"
+        onPress={() => navigation.navigate('Box')}
+      />
       <TouchableOpacity
         //onPress={() => console.log('list button pressed')}
         //onPress={() => props.navigation.navigate('List')}
