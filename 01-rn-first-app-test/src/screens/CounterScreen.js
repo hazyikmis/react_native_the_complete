@@ -1,3 +1,4 @@
+//Solution with useState
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
