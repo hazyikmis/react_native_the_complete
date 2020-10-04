@@ -1,23 +1,19 @@
+//import React, { useState, useEffect } from 'react';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
+import useRestaurants from '../hooks/useRestaurants';
+import ResultsList from '../components/ResultsList';
 
 const SearchScreen = (props) => {
   //const {} = props;
   const [term, setTerm] = useState('');
-  const [results, setResults] = useState([]);
+  const [searchApi, results, errMsg] = useRestaurants();
 
-  const searchApi = async () => {
-    const response = await yelp.get('/search', {
-      params: {
-        // term: term,
-        term,
-        limit: 20,
-        location: 'san jose',
-      },
-    });
-    setResults(response.data.businesses);
+  const filterResultsByPrice = (price) => {
+    // price --> '$' | '$$' | '$$$'
+    return results.filter((result) => result.price === price);
   };
 
   return (
@@ -27,10 +23,15 @@ const SearchScreen = (props) => {
         //onTermSubmit={() => console.log('search term submitted:', term)}
         //onTermChange={(newTerm) => setTerm(newTerm)}
         onTermChange={setTerm} //WORKS? strangely
-        onTermSubmit={searchApi}
+        //onTermSubmit={searchApi}
+        onTermSubmit={() => searchApi(term)}
       />
       <Text>{term}</Text>
+      {errMsg ? <Text>{errMsg}</Text> : null}
       <Text>We have found {results.length} restaurants...</Text>
+      <ResultsList title="Cost Effective" results={filterResultsByPrice('$')} />
+      <ResultsList title="Bit Pricier" results={filterResultsByPrice('$$')} />
+      <ResultsList title="Big Spender" results={filterResultsByPrice('$$$')} />
     </View>
   );
 };
