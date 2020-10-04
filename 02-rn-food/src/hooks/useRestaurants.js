@@ -8,7 +8,8 @@ export default () => {
   const searchApi = async (searchTerm) => {
     console.log('search is being done');
     try {
-      const response = await yelp.get('/search', {
+      //const response = await yelp.get('/search', {
+      const response = await yelp.get('/search?price=1,2,3', {
         params: {
           //term // term: term,
           term: searchTerm,
