@@ -38,7 +38,7 @@ again context is just about moving information and it doesn't necessarily
 entirely replace a library like say redux or something like that.
 
 The problem is: Whenever you want to define new context (new data to keep
-in Context and share it with children) you need to follow same process done in here:
+in Context and share it with children) you need to follow same process done in here in the file /src/context/BlockContext.js:
 
 - create context,
 - create provider

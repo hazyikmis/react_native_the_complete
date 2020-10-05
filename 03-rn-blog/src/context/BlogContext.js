@@ -1,13 +1,4 @@
-//useReducer solution
-/*
-Whenever people say to you hey let's manage our state with context or
-something like that it's not quite a statement that makes a lot of sense,
-again context is just about moving information and it doesn't necessarily
-entirely replace a library like say redux or something like that.
-*/
-import React, { useReducer } from 'react';
-
-const BlogContext = React.createContext();
+import createDataContext from './createDataContext';
 
 const blogReducer = (state, action) => {
   switch (action.type) {
@@ -18,31 +9,20 @@ const blogReducer = (state, action) => {
   }
 };
 
-export const BlogProvider = ({ children }) => {
-  // const [blogPosts, setBlogPosts] = useState([]);
-  const [blogPosts, dispatch] = useReducer(blogReducer, []);
-
-  const addBlogPost = () => {
-    dispatch({ type: 'add_blogpost' });
-  };
-
-  return (
-    // <BlogContext.Provider value={blogPosts}>{children}</BlogContext.Provider>
-    //Now with the design of Context below, we are passing not only the data, but also the function how to add new data
-    <BlogContext.Provider value={{ data: blogPosts, addBlogPost }}>
-      {/* <BlogContext.Provider value={{ data: blogPosts, addBlogPost, deleteBlogPost, updateBlogPost }}> */}
-      {children}
-    </BlogContext.Provider>
-  );
+//The problem in this function below is: There is no "dispatch" defined in here,
+//its defined in "createDataContext". So its better to make it to accept dispatch as param
+//and change it as far below
+/*
+const addBlogPost = () => {
+  dispatch({ type: 'add_blogpost' });
+};
+*/
+const addBlogPost = (dispatch) => {
+  return () => dispatch({ type: 'add_blogpost' });
 };
 
-export default BlogContext;
-
-//The problem is: Whenever you want to define new context (new data to keep in Context and share it with children)
-//you need to follow same process done in here:
-//-create context,
-//-create provider
-//-define actions/dispatching
-//-return/export context provider
-//So, we can use a generic structure (as defined in createDataContext.js)
-//to make it all
+export const { Context, Provider } = createDataContext(
+  blogReducer,
+  { addBlogPost },
+  []
+);
