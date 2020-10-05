@@ -29,3 +29,10 @@ $ expo r -c
 ```
 
 vector-icons: https://github.com/expo/vector-icons
+
+# Context in React
+
+Whenever people say to you hey let's manage our state with context or
+something like that it's not quite a statement that makes a lot of sense,
+again context is just about moving information and it doesn't necessarily
+entirely replace a library like say redux or something like that.
