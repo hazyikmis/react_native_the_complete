@@ -3,6 +3,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import IndexScreen from '../screens/IndexScreen';
 import ShowScreen from '../screens/ShowScreen';
+import CreateScreen from '../screens/CreateScreen';
 
 const StackMain = createStackNavigator();
 
@@ -28,6 +29,11 @@ const MainNavigator = () => {
         name="ScreenShow"
         component={ShowScreen}
         options={{ headerTitle: 'Show Blog' }}
+      />
+      <StackMain.Screen
+        name="ScreenCreate"
+        component={CreateScreen}
+        options={{ headerTitle: 'Create New Blog' }}
       />
     </StackMain.Navigator>
   );

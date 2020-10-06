@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Context as BlogContext } from '../context/BlogContext';
 
 const ShowScreen = ({ route }) => {
   //route.params --> {id: number } //comes from IndexScreen.js
   // console.log(route);
+  const { state } = useContext(BlogContext);
+
+  const blogPost = state.find((post) => post.id === route.params?.id);
+
   return (
     <View style={styles.container}>
-      <Text>Show Screen</Text>
+      <Text>{blogPost.title}</Text>
     </View>
   );
 };
