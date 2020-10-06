@@ -2,6 +2,7 @@ import React from 'react';
 //import { Platform, SafeAreaView, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import IndexScreen from '../screens/IndexScreen';
+import ShowScreen from '../screens/ShowScreen';
 
 const StackMain = createStackNavigator();
 
@@ -22,6 +23,11 @@ const MainNavigator = () => {
         name="ScreenIndex"
         component={IndexScreen}
         options={{ headerTitle: 'Blog List' }}
+      />
+      <StackMain.Screen
+        name="ScreenShow"
+        component={ShowScreen}
+        options={{ headerTitle: 'Show Blog' }}
       />
     </StackMain.Navigator>
   );
