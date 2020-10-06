@@ -15,7 +15,7 @@ npm install
 $ npx expo-cli init 02-rn-food --npm
 ```
 
-React NAvigation v.4 Installation:
+React Navigation v.4 Installation:
 
 ```
 $ npm install react-navigation
@@ -34,13 +34,13 @@ vector-icons: https://github.com/expo/vector-icons
 
 Whenever people say to you hey let's manage our state with context or
 something like that it's not quite a statement that makes a lot of sense,
-again context is just about moving information and it doesn't necessarily
+again context is just about moving information, and it doesn't necessarily
 entirely replace a library like say redux or something like that.
 
 The problem is: Whenever you want to define new context (new data to keep
 in Context and share it with children) you need to follow same process done in here in the file /src/context/BlockContext.js:
 
-- create context,
+- create context
 - create provider
 - define actions/dispatching
 - return/export context provider
