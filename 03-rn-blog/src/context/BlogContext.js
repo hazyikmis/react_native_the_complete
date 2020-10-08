@@ -12,6 +12,15 @@ const blogReducer = (state, action) => {
           content: action.payload.content,
         },
       ];
+    case 'edit_blogpost':
+      return state.map((blogPost) => {
+        // if (blogPost.id === action.payload.id) {
+        //   return action.payload;
+        // } else {
+        //   return blogPost;
+        // }
+        return blogPost.id === action.payload.id ? action.payload : blogPost;
+      });
     case 'delete_blogpost':
       return state.filter((blogPost) => blogPost.id !== action.payload);
     default:
@@ -46,7 +55,11 @@ const addBlogPost = (dispatch) => {
   */
   return (title, content, callback) => {
     dispatch({ type: 'add_blogpost', payload: { title, content } });
-    callback(); //navigates index screen
+    //in all scenarios we are calling addBlogPost with a callback parameter
+    //but there is also a possibility to call this function without a callback
+    if (callback) {
+      callback(); //navigates index screen
+    }
   };
 
   //any time we call "dispatch", this object taken by react and automatically
@@ -59,10 +72,25 @@ const deleteBlogPost = (dispatch) => {
   //provided to reducer function as the 2nd argument (which is action)
 };
 
+const editBlogPost = (dispatch) => {
+  // return (id, title, content) => {
+  //   dispatch({ type: 'edit_blogpost', payload: { id, title, content } });
+  // };
+  return (id, title, content, callback) => {
+    dispatch({ type: 'edit_blogpost', payload: { id, title, content } });
+    //in all scenarios we are calling editBlogPost with a callback parameter
+    //but there is also a possibility to call this function without a callback
+    if (callback) {
+      callback(); //navigates previous screen - navigation.pop()
+    }
+  };
+};
+
 export const { Context, Provider } = createDataContext(
   blogReducer,
   //{ addBlogPost },
-  { addBlogPost, deleteBlogPost },
+  // { addBlogPost, deleteBlogPost },
+  { addBlogPost, deleteBlogPost, editBlogPost },
   //[]
   [{ title: 'TEST POST', content: 'TEST CONTENT', id: 1 }] //start with an initial dummy data
 );
