@@ -15,12 +15,13 @@ const IndexScreen = ({ navigation }) => {
   //const blogPosts = useContext(BlogContext);
   //const { data, addBlogPost } = useContext(BlogContext);
   //we don't have data object anymore, we have state and all data inside the state
-  const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);
+  // const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);
+  const { state, deleteBlogPost } = useContext(BlogContext);
   return (
     <View style={styles.container}>
       <Text>Index Screen!</Text>
       {/* <Text>{value}</Text> */}
-      <Button title="Add Post" onPress={addBlogPost} />
+      {/* <Button title="Add Post" onPress={addBlogPost} /> */}
       <FlatList
         // data={blogPosts}
         // data={data}

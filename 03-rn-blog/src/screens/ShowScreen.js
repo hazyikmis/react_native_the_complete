@@ -12,6 +12,7 @@ const ShowScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       <Text>{blogPost.title}</Text>
+      <Text>{blogPost.content}</Text>
     </View>
   );
 };
