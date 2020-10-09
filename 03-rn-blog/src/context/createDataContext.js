@@ -1,4 +1,7 @@
-//basic context creation process
+//basic context creation process - GENERIC
+//you can use this same file creating different contexts in this app
+//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707656
+
 import React, { useReducer } from 'react';
 
 export default (reducer, actions, initialState) => {
