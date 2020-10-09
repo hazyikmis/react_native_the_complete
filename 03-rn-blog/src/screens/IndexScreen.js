@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   View,
   Text,
@@ -16,7 +16,17 @@ const IndexScreen = ({ navigation }) => {
   //const { data, addBlogPost } = useContext(BlogContext);
   //we don't have data object anymore, we have state and all data inside the state
   // const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);
-  const { state, deleteBlogPost } = useContext(BlogContext);
+  const { state, deleteBlogPost, getBlogPosts } = useContext(BlogContext);
+
+  //in order to fill context/state with existing blogposts (stored in db.json file in the jsonserver app, served by ngrok tunneling)
+  //calling getBlogPosts() action DIRECTLY is not a good idea, because this causes an infinite loop - re-rendering this component
+  //because of that, we are using useEffect hook!
+  //getBlogPosts();
+
+  useEffect(() => {
+    getBlogPosts();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text>Index Screen!</Text>
