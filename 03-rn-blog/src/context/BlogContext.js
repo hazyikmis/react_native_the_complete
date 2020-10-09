@@ -56,6 +56,7 @@ const addBlogPost = (dispatch) => {
     }
   };
   */
+  /*
   return (title, content, callback) => {
     dispatch({ type: 'add_blogpost', payload: { title, content } });
     //in all scenarios we are calling addBlogPost with a callback parameter
@@ -64,7 +65,18 @@ const addBlogPost = (dispatch) => {
       callback(); //navigates index screen
     }
   };
-
+  */
+  //after adding a backend server (json-server via ngrok)
+  return async (title, content, callback) => {
+    //SIDE NOTE: json-server automatically adds "id"s
+    const response = await jsonServer.post('/blogposts', { title, content });
+    //rather than dispatching this action, its better to reload items in the IndexScreen using useEffect/focus !
+    //IMPORTANT CHECK: IndexScreen.js / useEffect
+    //dispatch({ type: 'add_blogpost', payload: { title, content } });
+    if (callback) {
+      callback();
+    }
+  };
   //any time we call "dispatch", this object taken by react and automatically
   //provided to reducer function as the 2nd argument (which is action)
 };

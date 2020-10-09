@@ -9,6 +9,36 @@
       "id": 2,
       "title": "TEST POST",
       "content": "test content for my test post"
+    },
+    {
+      "title": "Newly created API blogpost",
+      "content": "dummy content",
+      "id": 3
+    },
+    {
+      "title": "4",
+      "content": "5555",
+      "id": 4
+    },
+    {
+      "title": "Blog host 99",
+      "content": "ssdfsdfsdf",
+      "id": 5
+    },
+    {
+      "title": "000",
+      "content": "werwe",
+      "id": 6
+    },
+    {
+      "title": "oha oha",
+      "content": "ssssss",
+      "id": 7
+    },
+    {
+      "title": "mmm",
+      "content": "nnnnnnn",
+      "id": 8
     }
   ]
 }
