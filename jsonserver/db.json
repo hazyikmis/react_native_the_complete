@@ -1,27 +1,12 @@
 {
   "blogposts": [
     {
-      "id": 1,
-      "title": "API POST",
-      "content": "content for my post"
-    },
-    {
       "id": 2,
       "title": "TEST POST",
       "content": "test content for my test post"
     },
     {
-      "title": "Newly created API blogpost",
-      "content": "dummy content",
-      "id": 3
-    },
-    {
-      "title": "4",
-      "content": "5555",
-      "id": 4
-    },
-    {
-      "title": "Blog host 99",
+      "title": "Blog hos",
       "content": "ssdfsdfsdf",
       "id": 5
     },
@@ -34,11 +19,6 @@
       "title": "oha oha",
       "content": "ssssss",
       "id": 7
-    },
-    {
-      "title": "mmm",
-      "content": "nnnnnnn",
-      "id": 8
     }
   ]
 }

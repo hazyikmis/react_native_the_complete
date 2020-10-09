@@ -82,16 +82,35 @@ const addBlogPost = (dispatch) => {
 };
 
 const deleteBlogPost = (dispatch) => {
-  return (id) => dispatch({ type: 'delete_blogpost', payload: id });
+  //return (id) => dispatch({ type: 'delete_blogpost', payload: id });
   //any time we call "dispatch", this object taken by react and automatically
   //provided to reducer function as the 2nd argument (which is action)
+
+  return async (id) => {
+    await jsonServer.delete(`/blogposts/${id}`);
+    //we are calling dispatch, because we are not changing the screen, doing this deletion on the same IndexPage!
+    //because of that -not like addBlogPost above- dispatching the action, in order to delete this same blogpost from state
+    //BUT SURE, PROBABLY SOME OTHER METHODS AVAILABLE
+    dispatch({ type: 'delete_blogpost', payload: id });
+  };
 };
 
 const editBlogPost = (dispatch) => {
   // return (id, title, content) => {
   //   dispatch({ type: 'edit_blogpost', payload: { id, title, content } });
   // };
+  /*
   return (id, title, content, callback) => {
+    dispatch({ type: 'edit_blogpost', payload: { id, title, content } });
+    //in all scenarios we are calling editBlogPost with a callback parameter
+    //but there is also a possibility to call this function without a callback
+    if (callback) {
+      callback(); //navigates previous screen - navigation.pop()
+    }
+  };
+  */
+  return async (id, title, content, callback) => {
+    await jsonServer.put(`/blogposts/${id}`, { title, content });
     dispatch({ type: 'edit_blogpost', payload: { id, title, content } });
     //in all scenarios we are calling editBlogPost with a callback parameter
     //but there is also a possibility to call this function without a callback
