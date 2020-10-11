@@ -1,0 +1,16 @@
+POST http://localhost:3000/signup HTTP/1.1
+content-type: application/json
+
+{
+ "username": "halo",
+ "password": "pwd000" 
+}
+
+###
+POST https://example.com/comments HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
