@@ -2,8 +2,8 @@ POST http://localhost:3000/signup HTTP/1.1
 content-type: application/json
 
 {
- "email": "halo@test.com",
- "password": "pwd000" 
+    "email": "halo@test.com",
+    "password": "pwd000" 
 }
 
 ###
@@ -17,6 +17,34 @@ content-type: application/json
 
 {
  //"email": "halo@test.com",
- "email": "halo@test.com",
- "password": "pwd0000000" 
+    "email": "halo@test.com",
+    "password": "pwd0000000" 
+}
+
+###
+GET  http://localhost:3000/tracks HTTP/1.1
+content-type: application/json
+//try with/without the Authorization header, or with wrong token below
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjgzNjgxNTM0NWY4YjJhMDgzOTc1NTQiLCJpYXQiOjE2MDI0NDczODF9.Yc3_rRINZKUjmY4gITTAxwk2TCIBH6gKWdu81w4-NnI
+
+###
+POST  http://localhost:3000/tracks HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjgzNjgxNTM0NWY4YjJhMDgzOTc1NTQiLCJpYXQiOjE2MDI0NDczODF9.Yc3_rRINZKUjmY4gITTAxwk2TCIBH6gKWdu81w4-NnI
+
+{
+    "name": "My new track",
+    "locations": [
+        {
+            "timestamp": 1000000000,
+            "coords": {
+                "latitude": 100,
+                "longitude": 100,
+                "altitude": 100,
+                "accuracy": 100,
+                "heading": 100,
+                "speed": 100
+            }
+        }
+    ]
 }
