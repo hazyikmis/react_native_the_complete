@@ -2,11 +2,21 @@ POST http://localhost:3000/signup HTTP/1.1
 content-type: application/json
 
 {
- "email": "halo2@test.com",
+ "email": "halo@test.com",
  "password": "pwd000" 
 }
 
 ###
 GET  http://localhost:3000/ HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjgzM2JhZGZjN2JjMzQwNDQ4MjA3OGEiLCJpYXQiOjE2MDI0MzYwMTN9.JxFfAm4jPi7ehehphyFbj-pf5hL3S3dqMMWDkWsoH8U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjgzNjgxNTM0NWY4YjJhMDgzOTc1NTQiLCJpYXQiOjE2MDI0NDczODF9.Yc3_rRINZKUjmY4gITTAxwk2TCIBH6gKWdu81w4-NnI
+
+###
+POST http://localhost:3000/signin HTTP/1.1
+content-type: application/json
+
+{
+ //"email": "halo@test.com",
+ "email": "halo@test.com",
+ "password": "pwd0000000" 
+}
