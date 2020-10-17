@@ -6,7 +6,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AccountScreen from './src/screens/AccountScreen';
 import SigninScreen from './src/screens/SigninScreen';
-import SignupScreen from './src/screens/SignupScreen';
+import SignupScreen, {
+  navigationOptions as SignupScreenNavigationOptions,
+} from './src/screens/SignupScreen';
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
@@ -16,8 +18,12 @@ const stackNavMain = createStackNavigator();
 const stackNavLogin = createStackNavigator();
 const loginFlow = () => {
   return (
-    <stackNavLogin.Navigator>
-      <stackNavLogin.Screen name="Signup" component={SignupScreen} />
+    <stackNavLogin.Navigator screenOptions={{ headerShown: false }}>
+      <stackNavLogin.Screen
+        name="Signup"
+        component={SignupScreen}
+        //options={SignupScreenNavigationOptions}
+      />
       <stackNavLogin.Screen name="Signin" component={SigninScreen} />
     </stackNavLogin.Navigator>
   );
@@ -50,7 +56,7 @@ const mainFlow = () => {
 export default function App() {
   return (
     <NavigationContainer>
-      <stackNavMain.Navigator>
+      <stackNavMain.Navigator screenOptions={{ headerShown: false }}>
         <stackNavMain.Screen name="loginFlow" component={loginFlow} />
         <stackNavMain.Screen name="mainFlow" component={mainFlow} />
       </stackNavMain.Navigator>
