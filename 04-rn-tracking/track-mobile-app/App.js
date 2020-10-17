@@ -1,6 +1,9 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import AccountScreen from './src/screens/AccountScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
@@ -8,20 +11,49 @@ import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
 
+const stackNavMain = createStackNavigator();
+
+const stackNavLogin = createStackNavigator();
+const loginFlow = () => {
+  return (
+    <stackNavLogin.Navigator>
+      <stackNavLogin.Screen name="Signup" component={SignupScreen} />
+      <stackNavLogin.Screen name="Signin" component={SigninScreen} />
+    </stackNavLogin.Navigator>
+  );
+};
+
+const stackNavTracks = createStackNavigator();
+const trackListFlow = () => {
+  return (
+    <stackNavTracks.Navigator>
+      <stackNavTracks.Screen name="TrackList" component={TrackListScreen} />
+      <stackNavTracks.Screen name="TrackDetail" component={TrackDetailScreen} />
+    </stackNavTracks.Navigator>
+  );
+};
+
+const bottomTabNavMain = createBottomTabNavigator();
+const mainFlow = () => {
+  return (
+    <bottomTabNavMain.Navigator>
+      <bottomTabNavMain.Screen name="trackListFlow" component={trackListFlow} />
+      <bottomTabNavMain.Screen
+        name="TrackCreate"
+        component={TrackCreateScreen}
+      />
+      <bottomTabNavMain.Screen name="Account" component={AccountScreen} />
+    </bottomTabNavMain.Navigator>
+  );
+};
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <stackNavMain.Navigator>
+        <stackNavMain.Screen name="loginFlow" component={loginFlow} />
+        <stackNavMain.Screen name="mainFlow" component={mainFlow} />
+      </stackNavMain.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
