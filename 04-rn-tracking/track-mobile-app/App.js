@@ -13,6 +13,9 @@ import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
 
+import { Provider as AuthProvider } from './src/context/AuthContext';
+import { setNavigator } from './src/navigationRef';
+
 const stackNavMain = createStackNavigator();
 
 const stackNavLogin = createStackNavigator();
@@ -53,13 +56,38 @@ const mainFlow = () => {
   );
 };
 
-export default function App() {
+// export default function App() {
+// function App() {
+// const App = () => {return (<Nav...></Nav...>)}
+// const App = () => (
+//   <NavigationContainer>
+//     <stackNavMain.Navigator screenOptions={{ headerShown: false }}>
+//       <stackNavMain.Screen name="loginFlow" component={loginFlow} />
+//       <stackNavMain.Screen name="mainFlow" component={mainFlow} />
+//     </stackNavMain.Navigator>
+//   </NavigationContainer>
+// );
+
+const App = React.forwardRef((props, ref) => (
+  <NavigationContainer ref={ref}>
+    <stackNavMain.Navigator screenOptions={{ headerShown: false }}>
+      <stackNavMain.Screen name="loginFlow" component={loginFlow} />
+      <stackNavMain.Screen name="mainFlow" component={mainFlow} />
+    </stackNavMain.Navigator>
+  </NavigationContainer>
+));
+
+//App is actually created by NavigationContainer (or equals to)
+
+export default () => {
+  const ref = React.createRef();
   return (
-    <NavigationContainer>
-      <stackNavMain.Navigator screenOptions={{ headerShown: false }}>
-        <stackNavMain.Screen name="loginFlow" component={loginFlow} />
-        <stackNavMain.Screen name="mainFlow" component={mainFlow} />
-      </stackNavMain.Navigator>
-    </NavigationContainer>
+    <AuthProvider>
+      <App
+        ref={(navigator) => {
+          setNavigator(navigator);
+        }}
+      />
+    </AuthProvider>
   );
-}
+};

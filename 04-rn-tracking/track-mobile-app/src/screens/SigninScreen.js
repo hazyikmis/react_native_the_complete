@@ -5,7 +5,7 @@ const SigninScreen = (props) => {
   const {} = props;
   return (
     <View style={styles.container}>
-      <Text>SigninScreen</Text>
+      <Text style={{ fontSize: 48 }}>SigninScreen</Text>
     </View>
   );
 };
