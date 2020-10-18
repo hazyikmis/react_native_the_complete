@@ -13,6 +13,8 @@ const authReducer = (state, action) => {
       return { token: action.payload, errorMessage: '' };
     case 'clear_error_message':
       return { ...state, errorMessage: '' };
+    case 'signout':
+      return { token: '', errorMessage: '' };
     default:
       return state;
   }
@@ -76,10 +78,10 @@ const signin = (dispatch) => async ({ email, password }) => {
   }
 };
 
-const signout = (dispatch) => {
-  return () => {
-    //sign out (somehow!)
-  };
+const signout = (dispatch) => async () => {
+  await AsyncStorage.removeItem('@TrackerApp_token');
+  dispatch({ type: 'signout' });
+  navigate('loginFlow');
 };
 
 //QUICK NOTE: We can define like, %100 equal (used in signup above)

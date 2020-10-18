@@ -7,13 +7,15 @@ import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
 
 const SignupScreen = ({ navigation }) => {
-  const { state, signup, clearErrorMessage, tryAutoSignin } = useContext(
-    AuthContext
-  );
+  // const { state, signup, clearErrorMessage, tryAutoSignin } = useContext(
+  const { state, signup, clearErrorMessage } = useContext(AuthContext);
 
-  useEffect(() => {
-    tryAutoSignin();
-  }, []);
+  //trying auto signin (checking token) operations moved to SplashScreen!
+  //Because, when the app loads, first this SignupScreen shown a couple of secs and then moves to mainFlow... thats not nice.
+  //So, we designed a splash screen (nothing inside - just dispatches the tryAutoLogin action)
+  // useEffect(() => {
+  //   tryAutoSignin();
+  // }, []);
 
   useEffect(() => {
     //This useEffects run once, and if user navigates back to this screen useEffect DO NOT runs again

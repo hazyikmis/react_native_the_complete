@@ -15,6 +15,7 @@ import TrackListScreen from './src/screens/TrackListScreen';
 
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigationRef';
+import SplashScreen from './src/screens/SplashScreen';
 
 const stackNavMain = createStackNavigator();
 
@@ -71,6 +72,7 @@ const mainFlow = () => {
 const App = React.forwardRef((props, ref) => (
   <NavigationContainer ref={ref}>
     <stackNavMain.Navigator screenOptions={{ headerShown: false }}>
+      <stackNavMain.Screen name="splash" component={SplashScreen} />
       <stackNavMain.Screen name="loginFlow" component={loginFlow} />
       <stackNavMain.Screen name="mainFlow" component={mainFlow} />
     </stackNavMain.Navigator>
