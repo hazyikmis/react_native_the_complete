@@ -116,3 +116,9 @@ const MyFunctionalComponent = React.forwardRef((props,ref) => {
 
 });
 ```
+
+# useRef in React
+
+https://www.youtube.com/watch?v=t2ypzz6gJm0
+
+https://github.com/hazyikmis/useRef_react_simple
