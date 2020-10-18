@@ -11,6 +11,8 @@ const authReducer = (state, action) => {
     case 'signup':
     case 'signin':
       return { token: action.payload, errorMessage: '' };
+    case 'clear_error_message':
+      return { ...state, errorMessage: '' };
     default:
       return state;
   }
@@ -80,9 +82,30 @@ const signout = (dispatch) => {
   };
 };
 
+//QUICK NOTE: We can define like, %100 equal (used in signup above)
+// const clearErrorMessage = (dispatch) => {
+//   return () => {
+//     dispatch({ type: 'clear_error_message' });
+//   };
+// };
+
+const clearErrorMessage = (dispatch) => () => {
+  dispatch({ type: 'clear_error_message' });
+};
+
+const tryAutoSignin = (dispatch) => async () => {
+  const token = await AsyncStorage.getItem('@TrackerApp_token');
+  if (token) {
+    dispatch({ type: 'signin', payload: token });
+    navigate('mainFlow');
+  } else {
+    navigate('loginFlow');
+  }
+};
+
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signup, signout },
+  { signin, signup, signout, clearErrorMessage, tryAutoSignin },
   // { isSignedIn: false, errorMessage: '' }
   { token: '', errorMessage: '' }
 );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Spacer from '../components/Spacer';
 
 const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
@@ -19,6 +20,9 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
         autoCapitalize="none"
         autoCorrect={false}
         keyboardType="email-address"
+        leftIcon={<Icon name="envelope" size={24} color="gray" />}
+        placeholder="email@address.com"
+        marginLeft={10}
       />
       <Spacer />
       <Input
@@ -29,6 +33,9 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
         autoCapitalize="none"
         autoCorrect={false}
         keyboardType="default"
+        leftIcon={<Icon name="lock" size={34} color="gray" />}
+        placeholder="password"
+        marginLeft={10}
       />
       {errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
