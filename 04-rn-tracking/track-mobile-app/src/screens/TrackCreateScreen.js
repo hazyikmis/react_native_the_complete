@@ -1,17 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, StyleSheet } from 'react-native';
+import { Text } from 'react-native-elements';
+import Map from '../components/Map';
 
 const TrackCreateScreen = (props) => {
   const {} = props;
   return (
-    <View style={styles.container}>
-      <Text>TrackCreateScreen</Text>
-    </View>
+    <SafeAreaView>
+      <Text h2>Create a Track</Text>
+      <Map />
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {},
-});
+const styles = StyleSheet.create({});
 
 export default TrackCreateScreen;
