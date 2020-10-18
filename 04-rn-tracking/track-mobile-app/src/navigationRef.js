@@ -11,6 +11,6 @@ export const setNavigator = (nav) => {
 };
 
 export const navigate = (name, params) => {
-  console.log(name, params);
+  // console.log(name, params);
   navigator.dispatch(CommonActions.navigate({ name, params }));
 };

@@ -18,6 +18,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
         onChangeText={setEmail}
         autoCapitalize="none"
         autoCorrect={false}
+        keyboardType="email-address"
       />
       <Spacer />
       <Input
@@ -27,6 +28,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
         onChangeText={setPassword}
         autoCapitalize="none"
         autoCorrect={false}
+        keyboardType="default"
       />
       {errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>

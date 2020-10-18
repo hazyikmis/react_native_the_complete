@@ -7,14 +7,16 @@ const authReducer = (state, action) => {
   switch (action.type) {
     case 'add_error':
       return { ...state, errorMessage: action.payload };
+    //both signup & signin actions are the same (up to now)
     case 'signup':
+    case 'signin':
       return { token: action.payload, errorMessage: '' };
     default:
       return state;
   }
 };
 
-//QUICK NOTE: We can define like, %100 equal
+//QUICK NOTE: We can define like, %100 equal  (used in signin below)
 //const signup = (dispatch) => async ({email, password}) => {...}
 
 const signup = (dispatch) => {
@@ -39,7 +41,7 @@ const signup = (dispatch) => {
       navigate('mainFlow');
     } catch (err) {
       //console.log(err.message);
-      console.log(err.response.data); //for real error message!
+      //console.log(err.response.data); //for real error message!
 
       //if we want to update state, we need to always dispatch an action,
       //here, we gonna update the "errorMessage" state portion
@@ -52,12 +54,24 @@ const signup = (dispatch) => {
   };
 };
 
-const signin = (dispatch) => {
-  return ({ email, password }) => {
-    //make an API request to sign in with provided email & password
-    //Handle success by updating the state
-    //Handle failure by sending/showing an error message
-  };
+//QUICK NOTE: We can define like, %100 equal (used in signup above)
+//const signin = (dispatch) => { return async ({email, password}) => {...}}
+
+const signin = (dispatch) => async ({ email, password }) => {
+  //make an API request to sign in with provided email & password
+  //Handle success by updating the state
+  //Handle failure by sending/showing an error message
+  try {
+    const response = await trackerApi.post('/signin', { email, password });
+    await AsyncStorage.setItem('@TrackerApp_token', response.data.token);
+    dispatch({ type: 'signin', payload: response.data.token });
+    navigate('mainFlow');
+  } catch (err) {
+    dispatch({
+      type: 'add_error',
+      payload: 'Something went wrong with sign in!',
+    });
+  }
 };
 
 const signout = (dispatch) => {
