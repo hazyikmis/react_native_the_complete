@@ -122,3 +122,9 @@ const MyFunctionalComponent = React.forwardRef((props,ref) => {
 https://www.youtube.com/watch?v=t2ypzz6gJm0
 
 https://github.com/hazyikmis/useRef_react_simple
+
+# safeAreaView
+
+react navigation 5 advises to use react-native-safe-area-context npm lib
+
+https://www.npmjs.com/package/react-native-safe-area-context

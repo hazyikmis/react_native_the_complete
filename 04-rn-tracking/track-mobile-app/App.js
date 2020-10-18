@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -70,13 +70,15 @@ const mainFlow = () => {
 // );
 
 const App = React.forwardRef((props, ref) => (
-  <NavigationContainer ref={ref}>
-    <stackNavMain.Navigator screenOptions={{ headerShown: false }}>
-      <stackNavMain.Screen name="splash" component={SplashScreen} />
-      <stackNavMain.Screen name="loginFlow" component={loginFlow} />
-      <stackNavMain.Screen name="mainFlow" component={mainFlow} />
-    </stackNavMain.Navigator>
-  </NavigationContainer>
+  <SafeAreaProvider>
+    <NavigationContainer ref={ref}>
+      <stackNavMain.Navigator screenOptions={{ headerShown: false }}>
+        <stackNavMain.Screen name="splash" component={SplashScreen} />
+        <stackNavMain.Screen name="loginFlow" component={loginFlow} />
+        <stackNavMain.Screen name="mainFlow" component={mainFlow} />
+      </stackNavMain.Navigator>
+    </NavigationContainer>
+  </SafeAreaProvider>
 ));
 
 //App is actually created by NavigationContainer (or equals to)
