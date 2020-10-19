@@ -1,53 +1,39 @@
+//MANY LOGIC INSIDE THIS FILE MOVED TO useLocation hook - check TrackCreateScreen0.js
+
 import '../_mockLocation'; //for testing purposes
 //IF I UNCOMMENT THE LINE ABOVE, AUTOMATICALLY LOCATION_CHANGE EVENTS EMITTED AND CAPTURED HERE
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
-import {
-  requestPermissionsAsync,
-  watchPositionAsync,
-  Accuracy,
-} from 'expo-location';
+import { useIsFocused, useFocusEffect } from '@react-navigation/native';
+
 import Map from '../components/Map';
 import { Context as LocationContext } from '../context/LocationContext';
+import useLocation from '../hooks/useLocation';
 
 const TrackCreateScreen = () => {
-  const [err, setErr] = useState(null);
-
   const { addLocation } = useContext(LocationContext);
 
-  const startWatching = async () => {
-    try {
-      const { granted } = await requestPermissionsAsync();
-      if (!granted) {
-        throw new Error('Location permission not granted');
-      }
-      await watchPositionAsync(
-        {
-          accuracy: Accuracy.BestForNavigation,
-          timeInterval: 1000, //1 sec
-          distanceInterval: 10, //10 meters
-          //we should get an update in every 1 sec OR 10 meters
-        },
-        (location) => {
-          //console.log(location);
-          //if user pressed "Record Track" then all the locations need to be stored in somewhere
-          //We need a another architecture (like AuthContext handling all auth-related events): LocationContext/LocationProvider
-          addLocation(location);
-        }
-      );
-    } catch (e) {
-      setErr(e);
-    }
-  };
+  // const isFocused = useIsFocused();
+  // if (isFocused) {
+  //   console.log('focused');
+  // }
 
-  //we need to run startWatching only once at the beginning - to request permission for location services
-  //if its the first time then a modal screen shown to accept/deny...
-  //if already accepted/denied then it is gonna never again asks - THAT MIGHT BE A PROBLEM FOR REPETATIVE TESTING
-  useEffect(() => {
-    startWatching();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      // Do something when the screen is focused
+      console.log('focused');
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+        console.log('un-focused');
+      };
+    }, [])
+  );
+
+  // const [err] = useLocation((location) => addLocation(location));
+  const [err] = useLocation(addLocation);
 
   return (
     <SafeAreaView>
