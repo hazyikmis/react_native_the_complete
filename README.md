@@ -128,3 +128,13 @@ https://github.com/hazyikmis/useRef_react_simple
 react navigation 5 advises to use react-native-safe-area-context npm lib
 
 https://www.npmjs.com/package/react-native-safe-area-context
+
+# RESET permission for android & ios
+
+> For android
+
+```
+$ adb shell pm reset-permissions
+```
+
+CHECK: 04-rn-tracking\track-mobile-app\zzz_info\08_ResettingPermissions.JPG
