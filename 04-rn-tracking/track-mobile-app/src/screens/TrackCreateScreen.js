@@ -1,6 +1,6 @@
-//import '../_mockLocation'; //for testing purposes
+import '../_mockLocation'; //for testing purposes
 //IF I UNCOMMENT THE LINE ABOVE, AUTOMATICALLY LOCATION_CHANGE EVENTS EMITTED AND CAPTURED HERE
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
@@ -10,9 +10,13 @@ import {
   Accuracy,
 } from 'expo-location';
 import Map from '../components/Map';
+import { Context as LocationContext } from '../context/LocationContext';
 
 const TrackCreateScreen = () => {
   const [err, setErr] = useState(null);
+
+  const { addLocation } = useContext(LocationContext);
+
   const startWatching = async () => {
     try {
       const { granted } = await requestPermissionsAsync();
@@ -27,9 +31,10 @@ const TrackCreateScreen = () => {
           //we should get an update in every 1 sec OR 10 meters
         },
         (location) => {
-          console.log(location);
+          //console.log(location);
           //if user pressed "Record Track" then all the locations need to be stored in somewhere
           //We need a another architecture (like AuthContext handling all auth-related events): LocationContext/LocationProvider
+          addLocation(location);
         }
       );
     } catch (e) {
