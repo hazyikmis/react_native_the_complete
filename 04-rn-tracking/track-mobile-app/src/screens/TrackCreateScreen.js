@@ -28,6 +28,8 @@ const TrackCreateScreen = () => {
         },
         (location) => {
           console.log(location);
+          //if user pressed "Record Track" then all the locations need to be stored in somewhere
+          //We need a another architecture (like AuthContext handling all auth-related events): LocationContext/LocationProvider
         }
       );
     } catch (e) {
