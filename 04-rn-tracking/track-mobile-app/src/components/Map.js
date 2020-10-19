@@ -28,13 +28,19 @@ const Map = () => {
         longitudeDelta: 0.01,
       }}
       //region is optional parameter, to recenter the map, take the coordinates below as a center point of the map
-      region={{
-        ...currentLocation.coords,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      }}
+      // region={{
+      //   ...currentLocation.coords,
+      //   latitudeDelta: 0.01,
+      //   longitudeDelta: 0.01,
+      // }}
     >
       {/* <Polyline coordinates={points} /> */}
+      <Circle
+        center={currentLocation.coords}
+        radius={30}
+        strokeColor="rgba(158,158,255,1.0)"
+        fillColor="rgba(158,158,255,0.3)"
+      />
     </MapView>
   );
 };
