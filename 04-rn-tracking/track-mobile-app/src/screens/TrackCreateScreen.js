@@ -1,8 +1,13 @@
+import '../_mockLocation';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
-import { requestPermissionsAsync } from 'expo-location';
+import {
+  requestPermissionsAsync,
+  watchPositionAsync,
+  Accuracy,
+} from 'expo-location';
 import Map from '../components/Map';
 
 const TrackCreateScreen = () => {
@@ -13,6 +18,17 @@ const TrackCreateScreen = () => {
       if (!granted) {
         throw new Error('Location permission not granted');
       }
+      await watchPositionAsync(
+        {
+          accuracy: Accuracy.BestForNavigation,
+          timeInterval: 1000, //1 sec
+          distanceInterval: 10, //10 meters
+          //we should get an update in every 1 sec OR 10 meters
+        },
+        (location) => {
+          console.log(location);
+        }
+      );
     } catch (e) {
       setErr(e);
     }
