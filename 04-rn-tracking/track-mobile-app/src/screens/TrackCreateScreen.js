@@ -2,7 +2,7 @@
 
 import '../_mockLocation'; //for testing purposes
 //IF I UNCOMMENT THE LINE ABOVE, AUTOMATICALLY LOCATION_CHANGE EVENTS EMITTED AND CAPTURED HERE
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
@@ -13,7 +13,13 @@ import { Context as LocationContext } from '../context/LocationContext';
 import useLocation from '../hooks/useLocation';
 
 const TrackCreateScreen = () => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  //const { addLocation } = useContext(LocationContext);
+  //isFocused helps us to stop/start tracking
   const { addLocation } = useContext(LocationContext);
+  // const [err] = useLocation((location) => addLocation(location));
+  const [err] = useLocation(isFocused, addLocation);
 
   // const isFocused = useIsFocused();
   // if (isFocused) {
@@ -24,16 +30,15 @@ const TrackCreateScreen = () => {
     useCallback(() => {
       // Do something when the screen is focused
       console.log('focused');
+      setIsFocused(true);
       return () => {
         // Do something when the screen is unfocused
         // Useful for cleanup functions
         console.log('un-focused');
+        setIsFocused(false);
       };
     }, [])
   );
-
-  // const [err] = useLocation((location) => addLocation(location));
-  const [err] = useLocation(addLocation);
 
   return (
     <SafeAreaView>

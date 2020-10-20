@@ -138,3 +138,11 @@ $ adb shell pm reset-permissions
 ```
 
 CHECK: 04-rn-tracking\track-mobile-app\zzz_info\08_ResettingPermissions.JPG
+
+# How to understand/catch screen changes / a screen get focused or lost focus
+
+https://reactnavigation.org/docs/navigation-lifecycle/#react-navigation-lifecycle-events
+
+https://reactnavigation.org/docs/function-after-focusing-screen
+
+check the file 04-rn-tracking\track-mobile-app\src\screens\TrackCreateScreen.js
