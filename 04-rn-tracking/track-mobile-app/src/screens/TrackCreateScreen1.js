@@ -22,21 +22,15 @@ const TrackCreateScreen = () => {
   // const [err] = useLocation((location) => addLocation(location));
   // const [err] = useLocation(isFocused, addLocation);
 
-  // const [err] = useLocation(isFocused, (location) => {
-  //   addLocation(location, state.recording);
-  // });
+  console.log('OUTSIDE:', state.recording);
+
+  const [err] = useLocation(isFocused, (location) => {
+    console.log('INSIDE:', state.recording);
+    addLocation(location, state.recording);
+  });
   //every time this screen re-renders the callback function sent to useLocation hook re-created again
   //the callback function I'm referring is  (location) => { addLocation(location, state.recording); } above
   //the problem is we don't want to re-create each time, causes to useEffect (in useLocation hook) re-run again again and again
-
-  const callback = useCallback(
-    (location) => {
-      addLocation(location, state.recording);
-    },
-    [state.recording]
-  );
-
-  const [err] = useLocation(isFocused, callback);
 
   // const isFocused = useIsFocused();
   // if (isFocused) {

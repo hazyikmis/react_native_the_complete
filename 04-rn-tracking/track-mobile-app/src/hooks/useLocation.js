@@ -52,7 +52,7 @@ export default (shouldTrack, callback) => {
       stopWatching();
       // setSubscriber(null);
     }
-  }, [shouldTrack]);
+  }, [shouldTrack, callback]);
 
   return [err];
 };
