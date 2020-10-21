@@ -18,7 +18,10 @@ const TrackCreateScreen = () => {
   //isFocused helps us to stop/start tracking
 
   //const { addLocation } = useContext(LocationContext);
-  const { state, addLocation } = useContext(LocationContext);
+  const {
+    state: { recording },
+    addLocation,
+  } = useContext(LocationContext);
   // const [err] = useLocation((location) => addLocation(location));
   // const [err] = useLocation(isFocused, addLocation);
 
@@ -31,12 +34,15 @@ const TrackCreateScreen = () => {
 
   const callback = useCallback(
     (location) => {
-      addLocation(location, state.recording);
+      // addLocation(location, state.recording);
+      addLocation(location, recording);
     },
-    [state.recording]
+    // [state.recording]
+    [recording]
   );
 
-  const [err] = useLocation(isFocused, callback);
+  //const [err] = useLocation(isFocused, callback); //No recording when user focus another screen
+  const [err] = useLocation(isFocused || recording, callback); //Recording continues even user focus another screen, until pressing stop recording
 
   // const isFocused = useIsFocused();
   // if (isFocused) {
