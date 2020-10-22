@@ -6,7 +6,7 @@ import React, { useContext, useCallback, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
-import { useIsFocused, useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import Map from '../components/Map';
 import { Context as LocationContext } from '../context/LocationContext';
