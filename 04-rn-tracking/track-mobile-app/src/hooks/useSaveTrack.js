@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import { Context as LocationContext } from '../context/LocationContext';
 import { Context as TrackContext } from '../context/TrackContext';
+import { navigate } from '../navigationRef';
 
 //IMPORTANT !!!
 //We can include also AuthContext, and use the saved token when creating/saving the track.
@@ -16,11 +17,15 @@ export default () => {
   //and push them to the TrackContext to save as a new track
   const {
     state: { locations, name },
+    reset,
   } = useContext(LocationContext);
   const { createTrack } = useContext(TrackContext);
 
-  const saveTrack = () => {
-    createTrack(name, locations);
+  const saveTrack = async () => {
+    await createTrack(name, locations);
+    //resetting the form (this means clearing the state in LocationContext)
+    reset();
+    navigate('TrackList');
   };
 
   return [saveTrack];

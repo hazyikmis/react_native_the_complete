@@ -14,6 +14,8 @@ const locationReducer = (state, action) => {
       return { ...state, recording: false };
     case 'change_name':
       return { ...state, name: action.payload };
+    case 'reset':
+      return { ...state, name: '', locations: [], currentLocation: null };
     default:
       return state;
   }
@@ -41,9 +43,15 @@ const changeTrackName = (dispatch) => (name) => {
   dispatch({ type: 'change_name', payload: name });
 };
 
+//this action function/creator used for clearing the "TrackCreateScreen"
+//(means changing the state in LocationContext - in here) after saving the track
+const reset = (dispatch) => () => {
+  dispatch({ type: 'reset' });
+};
+
 export const { Provider, Context } = createDataContext(
   locationReducer,
-  { startRecording, stopRecording, addLocation, changeTrackName },
+  { startRecording, stopRecording, addLocation, changeTrackName, reset },
   // { recording: false, locations: [], currentLocation: null }
   { recording: false, name: '', locations: [], currentLocation: null }
 );

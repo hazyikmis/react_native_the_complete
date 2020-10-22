@@ -34,8 +34,11 @@ const TrackCreateScreen = () => {
 
   const callback = useCallback(
     (location) => {
-      // addLocation(location, state.recording);
-      addLocation(location, recording);
+      if (location.coords.longitude > 0) {
+        //this check added only for escaping from an error (when recording starts, or tracking screen focuses, there is always first item in locations array which is we do not want??? It is the real time/location of the device actually)
+        // addLocation(location, state.recording);
+        addLocation(location, recording);
+      }
     },
     // [state.recording]
     [recording]
