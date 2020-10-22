@@ -9,6 +9,9 @@ export default axios.create({
 
 //This first version above has been changed to append token every time to the axios request
 
+//side note: userId information appended to the posted data inside the server/backend (tracker-server) by requireAuth middleware
+//we are here adding just the token into the Authorization header inside the trackerApi for all requests through backend
+
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
