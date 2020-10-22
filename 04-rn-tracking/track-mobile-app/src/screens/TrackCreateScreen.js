@@ -52,12 +52,12 @@ const TrackCreateScreen = () => {
   useFocusEffect(
     useCallback(() => {
       // Do something when the screen is focused
-      console.log('focused');
+      //console.log('focused');
       setIsFocused(true);
       return () => {
         // Do something when the screen is unfocused
         // Useful for cleanup functions
-        console.log('un-focused');
+        //console.log('un-focused');
         setIsFocused(false);
       };
     }, [])

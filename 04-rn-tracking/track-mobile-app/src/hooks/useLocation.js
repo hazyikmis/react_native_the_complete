@@ -48,7 +48,7 @@ export default (shouldTrack, callback) => {
     let subscriber;
 
     const startWatching = async () => {
-      console.log('start watching');
+      //console.log('start watching');
       try {
         const { granted } = await requestPermissionsAsync();
         if (!granted) {
@@ -79,7 +79,7 @@ export default (shouldTrack, callback) => {
     };
 
     const stopWatching = () => {
-      console.log('stop watching');
+      //console.log('stop watching');
       if (subscriber) subscriber.remove();
       // setSubscriber(null);
       subscriber = null;
