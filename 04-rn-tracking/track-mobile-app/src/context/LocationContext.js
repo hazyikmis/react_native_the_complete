@@ -1,3 +1,5 @@
+//LocationContext: All about tracking the user location + storing points
+//TrackContext: All about saving + retrieving existing tracks from our API
 import createDataContext from './createDataContext';
 
 const locationReducer = (state, action) => {
